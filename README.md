@@ -1,139 +1,313 @@
-# TaskFlow – Modern Jira Clone
+This README is written to look professional to recruiters and hiring managers. Replace the screenshot paths once you add screenshots.
 
-A production-quality full-stack issue tracking and project management application inspired by Jira, Linear, and GitHub Projects.
+# 🚀 TaskFlow - Full Stack Project Management Platform
 
-## Features
+TaskFlow is a modern Jira-inspired project management platform built with React, FastAPI, PostgreSQL, and Docker.
 
-- **Authentication** – JWT with refresh tokens, registration, login, user profiles
-- **Project Management** – Create/edit/delete projects, dashboards, member management
-- **Ticket Management** – Full CRUD with priority, status, assignee, story points, due dates
-- **Kanban Board** – Drag-and-drop with `@dnd-kit`, instant UI updates, persisted to database
-- **Comments** – Add, edit, delete comments on tickets
-- **Search & Filtering** – Filter by assignee, status, priority, project; search titles/descriptions
-- **Activity Timeline** – Chronological feed of all actions
-- **Notifications** – In-app notifications for assignments, comments, status changes
-- **Dashboard** – Stats cards, pie chart (tickets by status), bar chart (weekly progress) via Recharts
-- **Dark/Light Mode** – Theme toggle in navigation
+The application enables teams to manage projects, track tickets, collaborate through comments, monitor progress using Kanban workflows, and gain insights through analytics dashboards.
 
-## Tech Stack
+This project was built to learn and demonstrate full-stack software engineering concepts including API design, authentication, database modeling, Dockerized deployment, frontend architecture, and system design.
 
-| Layer    | Technologies |
-|----------|-------------|
-| Frontend | React 19, TypeScript, Vite, Tailwind CSS, ShadCN UI, React Query, React Router, React Hook Form, Zod, Recharts, @dnd-kit |
-| Backend  | Python, FastAPI, SQLAlchemy, Pydantic, JWT |
-| Database | PostgreSQL |
-| Deploy   | Docker, Docker Compose |
+---
 
-## Quick Start
+## ✨ Features
 
-### Prerequisites
+### Authentication & Security
 
-- [Docker](https://docs.docker.com/get-docker/) and Docker Compose
+- User Registration
+- User Login
+- JWT Authentication
+- Refresh Token Support
+- Password Hashing
+- Protected Routes
 
-### Run with Docker (recommended)
+### Project Management
 
-```bash
-docker-compose up --build
-```
+- Create Projects
+- Update Projects
+- Delete Projects
+- Project Dashboard
+- Team Member Management APIs
 
-Then open:
+### Ticket Management
 
-- **Frontend:** http://localhost:5173
-- **Backend API:** http://localhost:8000
-- **API Docs:** http://localhost:8000/docs
+- Create Tickets
+- Update Tickets
+- Delete Tickets
+- Assign Tickets
+- Priority Management
+- Status Tracking
+- Search and Filtering
+- Pagination
 
-### Demo Account
+### Kanban Board
 
-After the seed script runs on startup:
+- Drag-and-Drop Workflow
+- Backlog
+- Todo
+- In Progress
+- In Review
+- Done
 
-```
-Email:    john@taskflow.dev
-Password: Password1
-```
+### Collaboration
 
-Other demo users: `sarah@taskflow.dev`, `alex@taskflow.dev` (same password)
+- Ticket Comments
+- Activity Tracking
+- Notifications
 
-## Local Development (without Docker)
+### Analytics Dashboard
 
-### Backend
+- Ticket Status Distribution
+- Weekly Progress Tracking
+- Project Statistics
 
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-cp .env.example .env
-# Start PostgreSQL and update DATABASE_URL in .env
-python scripts/seed.py
-uvicorn app.main:app --reload --port 8000
-```
+### DevOps
+
+- Dockerized Deployment
+- Multi-Container Architecture
+- Health Checks
+- Seed Data Support
+- Environment Configuration
+
+---
+
+## 🏗️ Architecture
+
+Frontend (React + TypeScript)  
+↓  
+FastAPI Backend  
+↓  
+Service Layer  
+↓  
+Repository Layer  
+↓  
+PostgreSQL Database
+
+The backend follows a layered architecture using Repository and Service patterns to improve maintainability and separation of concerns.
+
+---
+
+## 🛠️ Tech Stack
 
 ### Frontend
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Query
+- React Router
+- React Hook Form
+- Zod
+- Recharts
+- DnD Kit
 
-Frontend dev server proxies `/api` to `http://localhost:8000`.
+### Backend
 
-## API Endpoints
+- FastAPI
+- SQLAlchemy
+- Pydantic
+- JWT Authentication
+- Passlib
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register user |
-| POST | `/api/auth/login` | Login |
-| POST | `/api/auth/refresh` | Refresh token |
-| GET | `/api/auth/me` | Current user profile |
-| GET/POST | `/api/projects` | List/create projects |
-| PUT/DELETE | `/api/projects/{id}` | Update/delete project |
-| GET | `/api/projects/{id}/dashboard` | Project dashboard |
-| GET/POST | `/api/tickets` | List/create tickets |
-| PUT/DELETE | `/api/tickets/{id}` | Update/delete ticket |
-| GET/POST | `/api/comments` | Comments |
-| GET | `/api/notifications` | Notifications |
-| PATCH | `/api/notifications/{id}/read` | Mark notification read |
-| GET | `/api/dashboard` | Main dashboard stats |
-| GET | `/api/activities` | Activity feed |
+### Database
 
-## Project Structure
+- PostgreSQL
 
-```
+### DevOps
+
+- Docker
+- Docker Compose
+- Nginx
+
+### Testing
+
+- Pytest
+- Automated API QA Scripts
+
+---
+
+## 📂 Project Structure
+
+```text
+JIRA-CLONE-
+│
 ├── backend/
 │   ├── app/
-│   │   ├── api/routes/      # REST endpoints
-│   │   ├── core/            # Config, DB, security, logging
-│   │   ├── models/          # SQLAlchemy models
-│   │   ├── repositories/    # Data access layer
-│   │   ├── schemas/         # Pydantic schemas
-│   │   └── services/        # Business logic
-│   ├── scripts/seed.py      # Demo data
-│   └── tests/
+│   │   ├── api/
+│   │   ├── models/
+│   │   ├── repositories/
+│   │   ├── schemas/
+│   │   ├── services/
+│   │   └── core/
+│   │
+│   ├── tests/
+│   └── scripts/
+│
 ├── frontend/
-│   └── src/
-│       ├── components/      # UI components
-│       ├── lib/             # API client, auth, theme
-│       └── pages/           # Route pages
-└── docker-compose.yml
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── lib/
+│   │   └── assets/
+│
+├── docker-compose.yml
+├── README.md
+└── QA_REPORT.md
+
 ```
 
-## Running Tests
+---
+
+##📸 Screenshots
+
+### Login Page
+
+![Login](screenshots/login.png)
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Projects
+
+![Projects](screenshots/projects.png)
+
+### Kanban Board
+
+![Kanban](screenshots/kanban.png)
+
+### Ticket Details
+
+![Ticket Details](screenshots/ticket-details.png)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Docker Desktop
+- Git
+
+### Clone Repository
 
 ```bash
-cd backend
-pytest
+git clone https://github.com/meghaagarwaal/JIRA-CLONE-.git
+cd JIRA-CLONE-
+
 ```
 
-## Environment Variables
+### Run Application
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `DATABASE_URL` | `postgresql://taskflow:taskflow@db:5432/taskflow` | PostgreSQL connection |
-| `SECRET_KEY` | (required in prod) | JWT signing key |
-| `CORS_ORIGINS` | `http://localhost:5173` | Allowed CORS origins |
-| `VITE_API_URL` | `/api` | Frontend API base URL |
+```bash
+docker compose up --build
 
-## License
+```
 
-MIT
+Or run in detached mode:
+
+```bash
+docker compose up -d
+
+```
+
+---
+
+## 🌐 Application URLs
+
+Frontend:
+
+```text
+http://localhost:5173
+
+```
+
+Backend:
+
+```text
+http://localhost:8000
+
+```
+
+API Documentation:
+
+```text
+http://localhost:8000/docs
+
+```
+
+---
+
+## 🔑 Demo Credentials
+
+```text
+Email: john@taskflow.dev
+Password: Password1
+
+```
+
+---
+
+## 🧪 Testing
+
+Run automated QA checks:
+
+```bash
+python scripts/qa_test.py
+
+```
+
+Run backend tests:
+
+```bash
+pytest
+
+```
+
+---
+
+## 📈 What I Learned
+
+Through this project I gained hands-on experience with:
+
+- REST API Design
+- JWT Authentication
+- SQLAlchemy ORM
+- PostgreSQL Database Modeling
+- Repository Pattern
+- Service Layer Architecture
+- Docker & Docker Compose
+- React Query
+- Frontend State Management
+- Kanban Workflow Systems
+- Full-Stack Application Development
+- Automated Testing and QA
+
+---
+
+## 🔮 Future Improvements
+
+- Alembic Database Migrations
+- Real-Time Updates using WebSockets
+- Sprint Management
+- File Attachments
+- Email Notifications
+- Team Analytics
+- AI Sprint Planning Assistant
+- CI/CD Pipeline with GitHub Actions
+
+---
+
+## 📄 License
+
+This project was created for educational and portfolio purposes.
+
+---
+
+## 👩‍💻 Author
+
+Megha Agarwal
+
+GitHub:  
+[https://github.com/meghaagarwaal](https://github.com/meghaagarwaal)
+
+After adding this README, create a `screenshots/` folder and add 4–5 screenshots from your running application. That alone will make the repository look significantly more professional.
